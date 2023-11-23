@@ -22,48 +22,48 @@ function Home() {
 
 	/** @type {[Posts[], React.Dispatch<Posts>]} */ // TODO: Remove
 	const [posts, setPosts] = useState([
-		{
-			body: "In 1984, India's Prime Minister Indira Gandhi was assassinated by members of her security detail. #todayinhistory\n\nThe fatal shooting came months after she had ordered a deadly assault on the Golden Temple, the prominent pilgrimage site for Sikhs, to remove separatists.",
-			comments: [
-				{
-					author: "Author",
-					dateCreated: "2019-10-31T05:56:03-0700",
-					text: "India endured Indira's end.",
-				},
-				{
-					author: "Author",
-					dateCreated: "2019-10-31T15:28:47-0700",
-					text: "                  Pradip Majumdar ",
-				},
-				{
-					author: "Steven Cullen",
-					dateCreated: "2019-10-31T09:01:52-0700",
-					text: "I remember the history......",
-				},
-				{
-					author: "Author",
-					dateCreated: "2019-10-31T07:27:40-0700",
-					text: "I remember that day vividly. I was a high-school student in Calcutta at the time. We were in the chemistry laboratory when our professor gave us the news and told us all classes were suspended for the rest of the day. Some students were more excited about getting the rest of the day off rather than being concerned that our Prime Minister had just been assassinated by her own bodyguards.",
-				},
-				{
-					author: "Author",
-					dateCreated: "2019-10-31T06:38:52-0700",
-					text: "the way it should be",
-				},
-				{
-					author: "Author",
-					dateCreated: "2019-10-31T06:00:07-0700",
-					text: "You mean \u2018Hindustan\u2019, right? But even that is not enough to justify that country\u2019s treatment of Sikhs - before or after 1984.",
-				},
-			],
-			date_created: "2019-10-31T05:51:07-0700",
-			headline: "NPR - In 1984, India's Prime Minister Indira Gandhi was...",
-			keywords: "Golden,Minister,Indira,Gandhi,Prime",
-			num_comments: 10,
-			num_likes: 121,
-			num_shares: 27,
-			url: "https://www.facebook.com/story.php?story_fbid=10158548679826756&id=10643211755",
-		},
+		// {
+		// 	body: "In 1984, India's Prime Minister Indira Gandhi was assassinated by members of her security detail. #todayinhistory\n\nThe fatal shooting came months after she had ordered a deadly assault on the Golden Temple, the prominent pilgrimage site for Sikhs, to remove separatists.",
+		// 	comments: [
+		// 		{
+		// 			author: "Author",
+		// 			dateCreated: "2019-10-31T05:56:03-0700",
+		// 			text: "India endured Indira's end.",
+		// 		},
+		// 		{
+		// 			author: "Author",
+		// 			dateCreated: "2019-10-31T15:28:47-0700",
+		// 			text: "                  Pradip Majumdar ",
+		// 		},
+		// 		{
+		// 			author: "Steven Cullen",
+		// 			dateCreated: "2019-10-31T09:01:52-0700",
+		// 			text: "I remember the history......",
+		// 		},
+		// 		{
+		// 			author: "Author",
+		// 			dateCreated: "2019-10-31T07:27:40-0700",
+		// 			text: "I remember that day vividly. I was a high-school student in Calcutta at the time. We were in the chemistry laboratory when our professor gave us the news and told us all classes were suspended for the rest of the day. Some students were more excited about getting the rest of the day off rather than being concerned that our Prime Minister had just been assassinated by her own bodyguards.",
+		// 		},
+		// 		{
+		// 			author: "Author",
+		// 			dateCreated: "2019-10-31T06:38:52-0700",
+		// 			text: "the way it should be",
+		// 		},
+		// 		{
+		// 			author: "Author",
+		// 			dateCreated: "2019-10-31T06:00:07-0700",
+		// 			text: "You mean \u2018Hindustan\u2019, right? But even that is not enough to justify that country\u2019s treatment of Sikhs - before or after 1984.",
+		// 		},
+		// 	],
+		// 	date_created: "2019-10-31T05:51:07-0700",
+		// 	headline: "NPR - In 1984, India's Prime Minister Indira Gandhi was...",
+		// 	keywords: "Golden,Minister,Indira,Gandhi,Prime",
+		// 	num_comments: 10,
+		// 	num_likes: 121,
+		// 	num_shares: 27,
+		// 	url: "https://www.facebook.com/story.php?story_fbid=10158548679826756&id=10643211755",
+		// },
 	]);
 
 	const getPosts = useCallback(async () => {

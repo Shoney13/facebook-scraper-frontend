@@ -69,11 +69,11 @@ function Setting({ getPosts, query, setQuery, timeFrame, setTimeFrame }) {
           variant="outlined"
 				>
 					<MenuItem value="all">All Time</MenuItem>
-					<MenuItem value="qbr:h">Past Hour</MenuItem>
-					<MenuItem value="qbr:d">Past 24 Hour</MenuItem>
-					<MenuItem value="qbr:w">Past Week</MenuItem>
-					<MenuItem value="qbr:m">Past Month</MenuItem>
-					<MenuItem value="qbr:y">Past Year</MenuItem>
+					<MenuItem value="qdr:h">Past Hour</MenuItem>
+					<MenuItem value="qdr:d">Past 24 Hour</MenuItem>
+					<MenuItem value="qdr:w">Past Week</MenuItem>
+					<MenuItem value="qdr:m">Past Month</MenuItem>
+					<MenuItem value="qdr:y">Past Year</MenuItem>
 				</Select>
 			</FormControl>
 			<Button

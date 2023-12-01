@@ -236,7 +236,7 @@ function List({
 					})}
 				>
 					<Typography variant="h5" align="center">
-						Comments
+						Most Relevant Comments
 					</Typography>
 					{post.comments.map((comment) => (
 						<div className={classes.comment}>{comment.text}</div>

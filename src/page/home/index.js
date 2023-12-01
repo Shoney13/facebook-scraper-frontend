@@ -23,6 +23,12 @@ function Home() {
 	/** @type {[Posts[], React.Dispatch<Posts>]} */ // TODO: Remove
 	const [posts, setPosts] = useState([
 		// {
+		// 	author: {
+		// 		name: "Shone mahendra jogi",
+		// 		avatar:
+		// 			"https://lh3.googleusercontent.com/a-/AFdZucronlTUV-NozkEp8kLRRch8n8eg1kH0jPaPyDpqLNs=s96-c",
+		// 		link: "https://lh3.googleusercontent.com/a-/AFdZucronlTUV-NozkEp8kLRRch8n8eg1kH0jPaPyDpqLNs=s96-c",
+		// 	},
 		// 	body: "In 1984, India's Prime Minister Indira Gandhi was assassinated by members of her security detail. #todayinhistory\n\nThe fatal shooting came months after she had ordered a deadly assault on the Golden Temple, the prominent pilgrimage site for Sikhs, to remove separatists.",
 		// 	comments: [
 		// 		{
@@ -65,6 +71,7 @@ function Home() {
 		// 	url: "https://www.facebook.com/story.php?story_fbid=10158548679826756&id=10643211755",
 		// },
 	]);
+	const [timeFrame, setTimeFrame] = useState("all");
 
 	const getPosts = useCallback(async () => {
 		if (!query.trim()) return;
@@ -77,6 +84,7 @@ function Home() {
 					params: {
 						query: query.trim(),
 						page,
+						tbs: timeFrame === "all" ? undefined : timeFrame,
 					},
 					cancelToken: axiosCancelSource.token,
 				}
@@ -88,7 +96,7 @@ function Home() {
 			console.error(error);
 			setLoading(false);
 		}
-	}, [axiosCancelSource.token, page, query]);
+	}, [axiosCancelSource.token, page, query, timeFrame]);
 
 	const handlePageChange = useCallback(async (value) => {
 		setPage((prev) => prev + value);
@@ -104,7 +112,7 @@ function Home() {
 
 	return (
 		<>
-			<Setting getPosts={getPosts} query={query} setQuery={setQuery} />
+			<Setting {...{ getPosts, query, setQuery, setTimeFrame, timeFrame }} />
 			<Grid container spacing={4}>
 				{loading ? (
 					<Loading />

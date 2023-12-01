@@ -1,6 +1,12 @@
 import React from "react";
 import { makeStyles } from "@material-ui/styles";
-import { Button, TextField } from "@material-ui/core";
+import {
+	Button,
+	FormControl,
+	MenuItem,
+	Select,
+	TextField,
+} from "@material-ui/core";
 import { Search } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
@@ -35,8 +41,11 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-function Setting({ getPosts,query, setQuery }) {
-	const classes = useStyles();
+function Setting({ getPosts, query, setQuery, timeFrame, setTimeFrame }) {
+  const classes = useStyles();
+  const handleChange = (event) => {
+    setTimeFrame(event.target.value);
+  };
 
 	return (
 		<div className={classes.search}>
@@ -45,8 +54,28 @@ function Setting({ getPosts,query, setQuery }) {
 				variant="outlined"
 				value={query}
 				onChange={(e) => setQuery(e.target.value)}
-				style={{ gridColumn: "span 12" }}
+				style={{ gridColumn: "span 8" }}
 			/>
+			<FormControl
+				className={classes.formControl}
+				style={{ gridColumn: "span 4" }}
+			>
+				{/* <InputLabel id="time-select-helper-label">Time</InputLabel> */}
+				<Select
+					// labelId="time-select-helper-label"
+					// id="time-select-helper"
+					value={timeFrame}
+          onChange={handleChange}
+          variant="outlined"
+				>
+					<MenuItem value="all">All Time</MenuItem>
+					<MenuItem value="qbr:h">Past Hour</MenuItem>
+					<MenuItem value="qbr:d">Past 24 Hour</MenuItem>
+					<MenuItem value="qbr:w">Past Week</MenuItem>
+					<MenuItem value="qbr:m">Past Month</MenuItem>
+					<MenuItem value="qbr:y">Past Year</MenuItem>
+				</Select>
+			</FormControl>
 			<Button
 				startIcon={<Search />}
 				variant="contained"
@@ -59,6 +88,5 @@ function Setting({ getPosts,query, setQuery }) {
 		</div>
 	);
 }
-
 
 export default Setting;

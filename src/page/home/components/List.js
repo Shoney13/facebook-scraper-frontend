@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/styles";
 
-import { Card, CardContent, IconButton, Typography } from "@material-ui/core";
+import {
+	Avatar,
+	Card,
+	CardContent,
+	IconButton,
+	Typography,
+} from "@material-ui/core";
 import CommentIcon from "@material-ui/icons/Comment";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import ShareIcon from "@material-ui/icons/Share";
@@ -54,6 +60,9 @@ const useStyles = makeStyles((theme) => ({
 		width: "100%",
 		padding: theme.spacing(2),
 		gap: 15,
+		[theme.breakpoints.up("xs")]: {
+			justifyContent: "flex-start",
+		},
 	},
 	cardLink: {
 		textDecoration: "none",
@@ -66,24 +75,30 @@ const useStyles = makeStyles((theme) => ({
 	comments: {
 		display: "none",
 		"&.commentsVisible": {
-      display: "flex",
-    },
-    borderTop:"1px solid white",
-  },
-  commentsVisible: {
-    display: "flex",
-    flexDirection: "column",
-    // gap: 5,
-  },
-  comment: {
-    padding: "5px 10px",
-    borderTop:"1px solid black",
-    borderBottom:"1px solid black",
-  },
+			display: "flex",
+		},
+		borderTop: "1px solid white",
+	},
+	commentsVisible: {
+		display: "flex",
+		flexDirection: "column",
+		// gap: 5,
+	},
+	comment: {
+		padding: "5px 10px",
+		borderTop: "1px solid black",
+		borderBottom: "1px solid black",
+	},
 }));
 
 function List({
 	post = {
+		author: {
+			name: "Shone",
+			avatar:
+				"https://lh3.googleusercontent.com/a-/AFdZucronlTUV-NozkEp8kLRRch8n8eg1kH0jPaPyDpqLNs=s96-c",
+			link: "https://lh3.googleusercontent.com/a-/AFdZucronlTUV-NozkEp8kLRRch8n8eg1kH0jPaPyDpqLNs=s96-c",
+		},
 		body: "In 1984, India's Prime Minister Indira Gandhi was assassinated by members of her security detail. #todayinhistory\n\nThe fatal shooting came months after she had ordered a deadly assault on the Golden Temple, the prominent pilgrimage site for Sikhs, to remove separatists.",
 		comments: [
 			{
@@ -128,11 +143,11 @@ function List({
 }) {
 	const classes = useStyles();
 	const [showComments, setShowComments] = useState(false);
-  // const imgLink = `./cover/${imgTitle}`;
-  
-  async function handleComments() {
-    setShowComments(prev=>!prev)
-  }
+	// const imgLink = `./cover/${imgTitle}`;
+
+	async function handleComments() {
+		setShowComments((prev) => !prev);
+	}
 
 	return (
 		<Card className={classes.card}>
@@ -166,6 +181,23 @@ function List({
 					</section>
 				</CardContent>
 				<div className={classes.controls}>
+					{post?.author?.name ? (
+						<>
+							<Avatar alt={post?.author?.name} src={post?.author?.avatar} />
+							<Typography
+								variant="subtitle1"
+								component="a"
+								href={post?.author?.link}
+								target="_blank"
+								rel="noopener noreferrer"
+								color="textSecondary"
+							>
+								{post?.author?.name}
+							</Typography>
+						</>
+					) : (
+						<></>
+					)}
 					<Typography
 						variant="subtitle2"
 						color="textSecondary"
@@ -174,13 +206,19 @@ function List({
 						{new Date(post.date_created).toLocaleDateString()}
 					</Typography>
 					<div className={classes.cardLink}>
-						<ThumbUpIcon /> <Typography variant="subtitle1">{post.num_likes}</Typography>
+						<ThumbUpIcon />{" "}
+						<Typography variant="subtitle1">{post.num_likes}</Typography>
 					</div>
-					<IconButton classes={{label:classes.cardLink}} onClick={handleComments}>
-						<CommentIcon /> <Typography variant="subtitle1">{post.num_comments}</Typography>
+					<IconButton
+						classes={{ label: classes.cardLink }}
+						onClick={handleComments}
+					>
+						<CommentIcon />{" "}
+						<Typography variant="subtitle1">{post.num_comments}</Typography>
 					</IconButton>
 					<div className={classes.cardLink}>
-						<ShareIcon /> <Typography variant="subtitle1">{post.num_shares}</Typography>
+						<ShareIcon />{" "}
+						<Typography variant="subtitle1">{post.num_shares}</Typography>
 					</div>
 					<a
 						target="_blank"
@@ -188,15 +226,18 @@ function List({
 						href={post.url}
 						className={classes.cardLink}
 					>
-						<OpenInNewIcon /> <Typography variant="subtitle1">View Post</Typography>
+						<OpenInNewIcon />{" "}
+						<Typography variant="subtitle1">View Post</Typography>
 					</a>
 				</div>
 				<div
 					className={classNames(classes.comments, {
 						[classes.commentsVisible]: showComments,
 					})}
-        >
-          <Typography variant="h5" align="center">Comments</Typography>
+				>
+					<Typography variant="h5" align="center">
+						Comments
+					</Typography>
 					{post.comments.map((comment) => (
 						<div className={classes.comment}>{comment.text}</div>
 					))}

@@ -79,7 +79,7 @@ function Home() {
 			setLoading(true);
 
 			const response = await axios.get(
-				"https://fbscraper.pankajbaranwal.com/search",
+				"https://popvox.co/search",
 				{
 					params: {
 						query: query.trim(),
